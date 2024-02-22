@@ -1,0 +1,72 @@
+﻿@using CineMagicAPI.Models
+@model List<Movies> 
+@inject IHttpContextAccessor HttpContextAccessor
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="">
+                        <div style="text-align: left;"><span style="text-align: center; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; background-color: rgb(0, 0, 0);">CineMagic&nbsp;</span><span style="background-color: rgb(234, 234, 234); color: rgb(33, 37, 41); font-size: 21px; font-weight: 700; text-align: center; white-space: nowrap; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;">Yeni</span></div><i>Sinemanın büyülü dünyasına hoş geldiniz.</i>
+                    </h3>
+                    @if (HttpContextAccessor.HttpContext.User.Identity.IsAuthenticated)
+                    {
+                        <form class="form-inline">
+                            <div class="input-group">
+                                <input type="text" class="form-control text-center" id="inlineFormInputGroup" placeholder="Search" style="">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" onclick="searchMovies()">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    }
+                    <script>
+                        function searchMovies() {
+                            // Get the movie name from the search bar
+                            var movieName = document.getElementById("inlineFormInputGroup").value;
+
+                            // Encode the movie name to replace spaces with %20
+                            var encodedMovieName = encodeURIComponent(movieName);
+
+                            // Redirect to the FilmAra page with the encoded movie name
+                            window.location.href = "Home/FilmAra?title=" + encodedMovieName;
+                        }
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-4 bg-light" style="	background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0.8));	background-position: top left;	background-size: 100%;	background-repeat: repeat;">
+        <div class="container">
+            <div class="row">
+                @foreach (var movie in Model)
+        {
+                <div class="col-md-4 p-3">
+                    <div class="card box-shadow">
+                        <img class="card-img-top" src="https://image.tmdb.org/t/p/original/@movie.poster_path">
+                        <div class="card-body">
+                                <strong><p class="card-text">@movie.title</p></strong>
+                                <p class="card-text">Puanı: @movie.vote_average</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <div class="btn-group">
+                                            <a class="btn btn-sm btn-outline-secondary" asp-controller="Home" asp-action="MovieDetail" asp-route-id="@movie.id">Film Detayını Görüntüle</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        }
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+@CineMagicAPI_HostAddress = http://localhost:5216
+
+GET {{CineMagicAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

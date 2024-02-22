@@ -1,0 +1,63 @@
+﻿@using CineMagicAPI.Models
+@model MovieDetail
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    
+                    <h3 class="" style="">
+
+                        <div style="text-align: left;">@Model.title</div>
+                    </h3>
+        
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-4 bg-light" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)); background-position: left top; background-size: 100%; background-repeat: repeat;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 p-3" style="">
+                    <div class="card box-shadow">
+                        <div class="card-body">
+                            <p>Genel Bakış: @Model.overview</p>
+                            <p>Yayın tarihi: @Model.release_date</p>
+                            <p>Filmin Kategorisi:</p>
+                            @foreach (var genre in Model.genres)
+                            {
+                                <li>@genre.name</li>
+                            }
+                            <p></p>
+                            <p>Oy Ortalaması: @Model.vote_average</p>
+                            <p>Oylama Sayısı: @Model.vote_count</p>
+                            <p>Film Süresi: @Model.runtime dk</p>
+                            <p>Hasılat: $@Model.revenue</p>
+                            <p>Durum: @Model.status</p>
+                            <p>Dil:</p>
+                            @foreach (var sp_lang in Model.spoken_languages)
+                            {
+                                <li>@sp_lang.name</li>
+                            }
+                            <p></p>
+                            <p>Ülke:</p>
+                            @foreach (var p_country in Model.production_countries)
+                            {
+                                <li>@p_country.name</li>
+                            }
+                            <p></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 p-3" style=""><img class="img-fluid d-block" src="https://image.tmdb.org/t/p/original/@Model.backdrop_path" style=""></div>
+            </div>
+        </div>
+    </div>
+   
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+﻿@model CineMagicAPI.Models.Register 
+@{
+    ViewData["Title"] = "Kaydolun";
+}
+
+<!DOCTYPE html>
+<html>
+<body>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" style="">
+                    <h3 class="" style=""> CineMagic'e&nbsp; Kaydolun!</h3><i class="fa fa-cog fa-spin fa-3x fa-fw"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <p>@ViewBag.ErrorMessage</p>
+    }
+    else
+    {
+        <p>@ViewBag.SuccessMessage</p>
+    }
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+    <div class="py-4 bg-light" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)); background-position: left top; background-size: 100%; background-repeat: repeat;">
+        <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form id="registerForm" method="post" action="/Home/Register" onsubmit="return checkPasswordMatch()">
+                                    <div class="form-group row">
+                                        <label for="Email" class="col-2 col-form-label">E-mail:</label>
+                                        <div class="col-10">
+                                            <input type="email" class="form-control" id="Email" name="Email" placeholder="mail@example.com" required>
+                                        </div>
+                                    </div>
+                                    <div id="PasswordError" class="form-group row">
+                                        <label for="Password" class="col-2 col-form-label">Şifre:</label>
+                                        <div class="col-10">
+                                            <input type="password" class="form-control" id="Password" name="HashPassword" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                    <div id="confirmPasswordError" class="form-group row">
+                                        <label for="Password" class="col-2 col-form-label">Şifreyi yeniden giriniz:</label>
+                                        <div class="col-10">
+                                            <input type="password" class="form-control" id="ConfirmPassword" name="HashPassword" placeholder="Password" required>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Kayıt Ol</button>
+                                </form>
+                                <script>
+                                    function checkPasswordMatch() {
+                                        var password = document.getElementById("Password").value;
+                                        var confirmPassword = document.getElementById("ConfirmPassword").value;
+
+                                        if (password !== confirmPassword) {
+                                            document.getElementById("Password").value = null;
+                                            document.getElementById("ConfirmPassword").value = null;
+                                            alert("Şifreler uyuşmuyor! Lütfen tekrar deneyin.");
+                                            return false; // Prevent form submission
+                                        }
+
+                                        return true;
+                                    }
+
+                                    document.getElementById("registerForm").addEventListener("submit", function (event) {
+                                        if (!checkPasswordMatch()) {
+                                            event.preventDefault();
+                                        }
+                                    });
+                                </script>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

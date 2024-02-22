@@ -1,0 +1,72 @@
+﻿@using CineMagicAPI.Models
+@model List<Movies>
+
+<!DOCTYPE html>
+<html>
+
+<body>
+    <div class="collapse bg-dark" id="navbarHeader" style="">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-7 py-4">
+                    <h4>About</h4>
+                    <p class="text-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                </div>
+                <div class="col-md-3 offset-md-1 py-4">
+                    <h4>Contact</h4>
+                    <ul class="list-unstyled">
+                        <li>
+                            <a href="#" class="text-secondary">Follow on Twitter</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-secondary">Like on Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-secondary">Email me</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h3 class="">
+                        <div style="text-align: left;"><span style="text-align: center; font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;; background-color: rgb(0, 0, 0);"> Arama Sonuçları: </span></div>
+                    </h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    @if (ViewBag.ErrorMessage != null)
+    {
+        <p>@ViewBag.ErrorMessage</p>
+    }
+    <div class="py-4 bg-light" style="background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.8)); background-position: left top; background-size: 100%; background-repeat: repeat;">
+
+        <div class="container">
+            <div class="row">
+                @foreach (var movie in Model)
+                {
+                    <div class="col-md-6 p-3">
+                        <div class="card box-shadow">
+                            <img class="card-img-top" src="https://image.tmdb.org/t/p/original/@movie.poster_path">
+                            <div class="card-body">
+                                <strong><p class="card-text">@movie.title</p></strong>
+                                <p class="card-text">Puanı: @movie.vote_average</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <div class="btn-group">
+                                            <a class="btn btn-sm btn-outline-secondary" asp-controller="Home" asp-action="MovieDetail" asp-route-id="@movie.id">Film Detayını Görüntüle</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+</body>
+
+</html>
