@@ -49,7 +49,11 @@ namespace CineMagic.Controllers
 
         public async Task<IActionResult> FilmAra(string title)
         {
-                using (var scope = HttpContext.RequestServices.CreateScope())
+            ClaimsPrincipal claimUser = HttpContext.User;
+            if (claimUser.Identity.IsAuthenticated==false)
+                return RedirectToAction("Index", "Home");
+
+            using (var scope = HttpContext.RequestServices.CreateScope())
                 {
                     var movieSearchService = scope.ServiceProvider.GetRequiredService<MovieSearchController>();
                     List<Movies> searchMovies = await movieSearchService.GetMovieSearchAsync(title);
@@ -120,6 +124,9 @@ namespace CineMagic.Controllers
         [HttpGet]
         public IActionResult Register()
         {
+            ClaimsPrincipal claimUser = HttpContext.User;
+            if (claimUser.Identity.IsAuthenticated)
+                return RedirectToAction("Index", "Home");
             return View();
         }
 
@@ -143,7 +150,7 @@ namespace CineMagic.Controllers
             }
             catch (SqlException ex) when (ex.Message.Contains("UNIQUE KEY constraint"))
             {
-                    ViewBag.ErrorMessage = "Bu e-posta adresi zaten kayýtlý.";
+                    ViewBag.ErrorMessage = "Bu e-mail adresi zaten kayýtlý.";
                     return View();
             }
         }
