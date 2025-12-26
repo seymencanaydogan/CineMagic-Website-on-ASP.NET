@@ -1,4 +1,4 @@
-# 🎬 CineMagic – Cinema Booking & Information Website (ASP.NET)
+# 🎬 CineMagic – Cinema Information Website (ASP.NET)
 
 **CineMagic** is a demo ASP.NET web application that showcases a cinema-style website with key features like movie browsing, showtimes, and user interaction. The project includes source code hosted on GitHub as well as a demo video that highlights how the application works in action.
 
@@ -57,7 +57,6 @@ This project is built using:
 * **ASP.NET / C#** – Main backend framework
 * **HTML / CSS / JavaScript** – Frontend user interface
 * **Entity Framework (optional)** – For database interactions
-* **SQL Server or local DB** – To store movies, schedules, users, etc.
 
 > Exact libraries and frameworks depend on the repo’s implementation.
 
@@ -90,13 +89,6 @@ To run the project locally:
 The YouTube demo shows how the website runs in a browser, including navigation, movie displays, and other interactions. This helps reviewers, teachers, or collaborators understand the UX without compiling the code themselves.
 
 📺 **Watch the demo:** [https://www.youtube.com/watch?v=PA93yitceoI](https://www.youtube.com/watch?v=PA93yitceoI)
-
----
-
-## 📌 Notes
-
-* This is a demo/portfolio project meant to showcase skills in ASP.NET and web application design.
-* Screenshots, video walkthroughs, or additional documentation can be added for clarity.
 
 ---
 
